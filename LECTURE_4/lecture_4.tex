@@ -1,0 +1,119 @@
+\chapter{Supports}
+
+\begin{definition}
+    [Support of a Function of a continuous variable]
+    The support of a function $f(t)$ of a continuous variable $t$ is the smallest time interval $[a,b]$ for which $f(t) \neq 0$.
+\end{definition}
+
+\begin{definition}
+    [Support of  a function of a discrete variable]
+    The support of a function $f[n]$ of a discrete variable $n$ is the smallest set of integers $n$ for which $f[n] \neq 0$.
+\end{definition}
+
+\begin{definition}
+    [Energy of a Continuous-time Signal]
+    The energy of a continuous-time signal $x(t)$ is defined as
+    \[
+        E_x = \int_{-\infty}^{\infty} |x(t)|^2 dt
+    \]
+
+\end{definition}
+
+\begin{definition}
+    [Energy of a Discrete-time Signal]
+    The energy of a discrete-time signal $x[n]$ is defined as
+    \[
+        E_x = \sum_{n=-\infty}^{\infty} |x[n]|^2
+    \]
+\end{definition}
+\begin{remark}
+    Energies of a signal are \textbf{always positive}, but may not exist (i.e. be infinite)
+\end{remark}
+
+\begin{figure}[H]
+    \centering
+    \begin{circuitikz}
+        \draw (0,0) to[V, v=$V_s$] (0,2) to[R, l=$1 \Omega$] (2,2) to[short] (2,0) to[short] (0,0);
+    \end{circuitikz}
+\end{figure}
+\begin{observation}
+    A signal of finite energy is called an energy signal.
+\end{observation}
+\section{Power}
+\begin{definition}
+    [Average Power of a Continuous-time Signal]
+    The average power of a continuous-time signal $x(t) \in \mathbb{C}^\mathbb{R}$ is defined as (if it exists):
+    \[
+        P_x = \lim_{T \to \infty} \frac{1}{2T} \int_{-T}^{T} |x(t)|^2 dt
+    \]
+\end{definition}
+
+\begin{definition}
+    [Average Power of a Discrete-time Signal]
+    The average power of a discrete-time signal $x[n] \in \mathbb{C}^\mathbb{Z}$ is defined as (if it exists):
+    \[
+        P_x = \lim_{N \to \infty} \frac{1}{2N+1} \sum_{n=-N}^{N} |x[n]|^2
+    \]
+\end{definition}
+
+
+\begin{definition}
+    [Power Signal]
+    A signal $x(t)$ is a power signal if $0 < P_x < \infty$. In other words, the average power of the signal is finite.
+\end{definition}
+\begin{corollary}
+    Every energy signal has zero average power.
+\end{corollary}
+
+\begin{example}
+    [Energy of the Zero Signal]
+    \begin{align}
+        \text{zero}(t) & = 0 \quad \forall t \in \mathbb{R} \\
+        \text{zero}[n] & = 0 \quad \forall n \in \mathbb{Z}
+    \end{align}
+    \begin{align}
+        USE THE EQUATIONS
+    \end{align}
+\end{example}
+
+\begin{example}
+    [Energy of the Rectangular Pulse]
+    \begin{align}
+        \text{rect}(t) & = \begin{cases}
+                               1 & |t| < \frac{1}{2} \\
+                               0 & \text{otherwise}
+                           \end{cases} \\
+        \text{rect}[n] & = \begin{cases}
+                               1 & |n| < \frac{1}{2} \\
+                               0 & \text{otherwise}
+                           \end{cases}
+    \end{align}
+    % figure of the rectangular pulse
+    \begin{figure}[H]
+        \centering
+        % tikz figure
+        \begin{tikzpicture}
+            \draw[->] (-2,0) -- (2,0) node[right] {$t$};
+            \draw[->] (0,0) -- (0,1.5) node[above] {$\text{rect}(t)$};
+            \draw (-1,0) -- (-1,1) -- (1,1) -- (1,0);
+        \end{tikzpicture}
+        \caption{Rectangular Pulse}
+    \end{figure}
+    \begin{align}
+        \int_{-\infty}^{\infty} |\text{rect}(t)|^2 dt & = \int_{-\frac{1}{2}}^{\frac{1}{2}} 1^2 dt = 1 \\
+        \sum_{n=-\infty}^{\infty} |\text{rect}[n]|^2  & = \sum_{n=-\frac{1}{2}}^{\frac{1}{2}} 1^2 = 1
+    \end{align}
+\end{example}
+
+\begin{example}
+    Find the power of $s (t) = \cos(\frac{2\pi t}{T}) : T > 0, A > 0$ \\
+    \begin{align}
+        P_s & = \lim_{T \to \infty} \frac{1}{2T} \int_{-T}^{T} |\cos(\frac{2\pi t}{T})|^2 dt                                                                                              \\
+            & = \lim_{T \to \infty} \frac{1}{2T} \int_{-T}^{T} \cos^2(\frac{2\pi t}{T}) dt                                                                                                \\
+            & = \lim_{T \to \infty} \frac{1}{2T} \int_{-T}^{T} \frac{1 + \cos(\frac{4\pi t}{T})}{2} dt                                                                                    \\
+            & = \lim_{T \to \infty} \frac{1}{2T} \left[ \frac{t}{2} + \frac{T}{4\pi} \sin(\frac{4\pi t}{T}) \right]_{-T}^{T}                                                              \\
+            & = \lim_{T \to \infty} \frac{1}{2T} \left[ \frac{T}{2} + \frac{T}{4\pi} \sin(\frac{4\pi T}{T}) - \left( -\frac{T}{2} - \frac{T}{4\pi} \sin(\frac{4\pi T}{T}) \right) \right] \\
+            & = \lim_{T \to \infty} \frac{1}{2T} \left[ T + \frac{T}{2\pi} \sin(4\pi) + T + \frac{T}{2\pi} \sin(-4\pi) \right]                                                            \\
+            & = \lim_{T \to \infty} \frac{1}{2T} \left[ 2T \right] = 1
+    \end{align}
+\end{example}
