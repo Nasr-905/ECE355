@@ -1,0 +1,75 @@
+\chapter{Properties of Systems (Oppenheim 1.6)}
+
+\section{Single-Input Single-Output (SISO) Systems}
+
+\begin{definition}
+    []
+    A System $$S : \mathbb{C}^{\mathbb{R}} \to \mathbb{C}^{\mathbb{R}}$$
+    is said to be \textit{memoryless} if the output at time $t$ depends only on the input at time $t$. That is:
+    $$ y(t) = (5(x))(t) = g(x(t))$$
+    for some function $g \to \mathbb{C} \to \mathbb{C}$.\\
+    \textit{I.e. the function doesn't remember previous inputs.}
+\end{definition}
+
+\begin{example}
+    [Memoryless System]
+    Full-wave rectifier system is memoryless.\\
+    $$x(t) \to \boxed{| \cdot |} \to y(t) = |x(t)|$$
+\end{example}
+
+
+\begin{definition}
+    [Anticipation]
+    A system is said to be \textit{anticipative} if the output at time $t$ depends on future inputs. That is:
+    $$ y(t) = (A(x))(t) = g(x(t+1))$$
+    for some function $g \to \mathbb{C} \to \mathbb{C}$.\\
+\end{definition}
+
+\begin{definition}
+    [Delay Lines]
+    $$x[n] \to \boxed{\text{Delay}} \to x[n-1] \to \boxed{\text{Delay}}\to y(t) = x(t-2)$$
+    There can be as many delays as you want in the line.
+\end{definition}
+
+\begin{definition}
+    [Invertible System]
+    A system is said to be \textit{invertible} if different inputs produce different outputs. That is, S is \textit{injective}
+    \begin{align*}
+        x_1(t)            & \neq x_2(t) \implies S(x_1)(t) \neq S(x_2)(t) \\
+        \therefore S(x_1) & = S(x_2) \implies x_1 = x_2
+    \end{align*}
+\end{definition}
+
+\begin{corollary}
+    []
+    If $S$ is invertible, then $\exists W$ such that
+    $$S(W(x)) = \text{id} \qquad \text{identity system}$$
+    $$x(t) \to \boxed{S} \to \boxed[W] \to y(t) = x(t)$$
+\end{corollary}
+
+\begin{definition}
+    [Causal System]
+    A system $S : \mathbb{C}^{\mathbb{R}} \to \mathbb{C}^{\mathbb{R}}$ is casuaal if the output at time $t$ depends only on the input at time $t$ and previous times. That is:
+    A system
+    $$        x_1(t) = x_2(t) \quad \forall t < t_0 \implies S(x_1)(t) = S(x_2)$$
+    \\\textit{I.e. the system doesn't predict the future, or doesn't predict bifercation.}
+\end{definition}
+
+\begin{definition}
+    [Stable System]
+    A system $S : \mathbb{C}^{\mathbb{R}} \to \mathbb{C}^{\mathbb{R}}$ is stable if bounded inputs produce bounded outputs. That is:
+    $$|x(t)| < B \quad \forall t \implies \exists C(B) \quad |S(x)(t)| \leq C(B) \quad \forall t$$
+\end{definition}
+
+\begin{definition}
+    [Linaer System]
+    A system $S : \mathbb{C}^{\mathbb{R}} \to \mathbb{C}^{\mathbb{R}}$ is said to preserve linear combinations for all signals. That is:
+    $$S(a_1 x_1 + a_2 x_2) = a_1 S(x_1) + a_2 S(x_2)$$
+    or equivalently
+    $$S(\sum_{i=1}^{n} a_i x_i) = \sum_{i=1}^{n} a_i S(x_i)$$q
+\end{definition}
+
+\begin{theorem}
+    [Linear-time iI,nvariant (LTI) System]+
+    are linear and time-invariant.
+\end{theorem}

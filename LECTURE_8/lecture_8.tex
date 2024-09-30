@@ -1,0 +1,115 @@
+\chapter{Systems}
+
+\begin{definition}
+    [System]
+    $$S: \mathbb{C}^\mathbb{Z} \to \mathbb{C}^\mathbb{Z} \qquad \text{or} \quad \mathbb{R}^\mathbb{Z} \to \mathbb{R}^\mathbb{Z}$$
+    $$S: \mathbb{C}^\mathbb{R} \to \mathbb{C}^\mathbb{R} \qquad \text{or} \quad \mathbb{R}^\mathbb{R} \to \mathbb{R}^\mathbb{R}$$
+    Taking an input signal $x[n]$ and producing an output signal $y[n]$.
+\end{definition}
+
+\section{Examples of Systems}
+
+\begin{definition}
+    [Moving Average System]
+    $$x[n] \to \boxed{\text{Moving Average}} \to y[n] = \frac{1}{N} \sum_{k=0}^{N-1} x[n-k]$$
+    $$x(t) \to \boxed{\text{Moving Average}} \to y(t) = \frac{1}{T} \int_{t-T}^{t} x(\tau) d\tau$$
+    This system takes the average of the last $N$ samples of the input signal. \\
+    \textit{This is a kind of low-pass filter, essentially acts as a smoother.}
+\end{definition}
+
+
+\begin{definition}
+    [Delay System]
+    $$x[n] \to \boxed{\text{Delay}_k} \to y[n] = x[n-k]$$
+    $$x(t) \to \boxed{\text{Delay}_T} \to y(t) = x(t-T)$$
+    This system delays the input signal by $k$ samples.
+\end{definition}
+
+\begin{definition}
+    [Rectifier System]
+    \textbf{Half-wave Rectifier:}
+    $$x[n] \to \boxed{\text{Rectifier}} \to y[n] = \max(0, x[n])$$
+    $$x(t) \to \boxed{\text{Rectifier}} \to y(t) = \max(0, x(t))$$
+    \textbf{Full-wave Rectifier:}
+    $$x[n] \to \boxed{\text{Rectifier}} \to y[n] = |x[n]|$$
+    $$x(t) \to \boxed{\text{Rectifier}} \to y(t) = |x(t)|$$
+\end{definition}
+
+\begin{definition}
+    [Differentiator System]
+    $$x[n] \to \boxed{\text{Differentiator}} \to y[n] = x[n] - x[n-1]$$
+    $$x(t) \to \boxed{\text{Differentiator}} \to y(t) = \frac{dx(t)}{dt}$$
+
+\end{definition}
+
+\section{Multi-Input and Multi-Output Systems}
+
+\begin{definition}
+    [Adder System]
+
+    $$ \begin{rcases}
+        x[n]_1 \\
+        \vdots \\
+        x[n]_k \end{rcases} \to \boxed{\text{Adder}} \to y[n] = x[n]_1 +\ldots + x[n]_k $$
+    $$ \begin{rcases}
+        x(t)_1 \\
+        \vdots \\
+        x(t)_k \end{rcases} \to \boxed{\text{Adder}} \to y(t) = x(t)_1 +\ldots + x(t)_k $$
+
+\end{definition}
+
+\begin{definition}
+    [Multiplier System]
+    $$ \begin{rcases}
+        x[n]_1 \\
+        \vdots \\
+        x[n]_k \end{rcases} \to \boxed{\text{Multiplier}} \to y[n] = x[n]_1 \cdot \ldots \cdot x[n]_k $$
+    $$ \begin{rcases}
+        x(t)_1 \\
+        \vdots \\
+        x(t)_k \end{rcases} \to \boxed{\text{Multiplier}} \to y(t) = x(t)_1 \cdot \ldots \cdot x(t)_k $$
+
+\end{definition}
+
+\begin{definition}
+    [Copy/Solder dot System]
+    $$x[n] \to \boxed{\text{Copy}} \to \begin{cases}
+        y_1[n] = x[n] \\
+        y_2[n] = x[n] \\
+        \vdots \\
+        y_k[n] = x[n] \end{cases}$$
+    $$x(t) \to \boxed{\text{Copy}} \to \begin{cases}
+        y_1(t) = x(t) \\
+        y_2(t) = x(t) \\
+        \vdots \\
+        y_k(t) = x(t) \end{cases}$$
+\end{definition}
+
+
+\begin{definition}
+    [Multi-Input Multi-Output (MIMO) System]
+    $$ \begin{rcases}
+        x[n]_1 \\
+        \vdots \\
+        x[n]_k \end{rcases} \to \boxed{\text{MIMO}} \to \begin{cases}
+        y_1[n] = f_1(x[n]_1, \ldots, x[n]_k) \\
+        \vdots \\
+        y_m[n] = f_m(x[n]_1, \ldots, x[n]_k) \end{cases}$$
+    And similarly for continuous-time signals.
+\end{definition}
+
+\begin{definition}
+    [Cascading Systems]
+    $$x[n] \to \boxed{\text{System}_1} \to \boxed{\text{System}_2} \to y[n] = S_2(S_1(x[n])) = (S_2 \circ S_1)(x[n])$$
+\end{definition}
+
+\begin{definition}
+    [Parallel Systems]
+    $$x[n] \to \left\{\!\quad \begin{aligned}
+        &\boxed{\text{System}_1} \\
+        &\boxed{\text{System}_2} \end{aligned}\quad\right\} \to y[n] = S_1(x[n]) + S_2(x[n])$$
+\end{definition}
+
+\begin{definition}
+    [Feedback Systems]
+\end{definition}

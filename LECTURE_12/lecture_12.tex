@@ -1,0 +1,92 @@
+\chapter{Properties of the Convolution}
+
+\begin{theorem}
+    [Convolution is Linear] \label{thm:convolution-is-linear}
+    Given $x \in \mathbb{C}^{\mathbb{Z}}, h \in \mathbb{C}^{\mathbb{Z}}$, the convolution of $x$ and $h$ (if it exists) is the signal $x * h \in \mathbb{text{C}}^{\mathbb{Z}}$ defined by
+    $$ (x * h)[n] \triangleq \sum_{m \in \mathbb{Z}} x[m]h[n-m] $$
+
+    \textit{Note: In our application, we will be working with convergent sums in the context of the convolution, so we will not be concerned with the convergence of the convolution.}
+\end{theorem}
+
+\begin{theorem}
+    [Alternate Convolution Formula] \label{thm:alternate-convolution-formula}
+    $$ (x*h)[n] = \sum_{k \in \mathbb{Z}}\sum_{l \in \mathbb{Z}} x[k]h[l] \delta[n-k-l] $$
+\end{theorem}
+
+\begin{proof}
+    \begin{align*}
+        (x*h)[n] & = \sum_{m \in \mathbb{Z}} x[m]h[n-m]                                    \\
+                 & = \sum_{k \in \mathbb{Z}} x[k]h[n-k]                                    \\
+                 & = \sum_{k \in \mathbb{Z}}\sum_{l \in \mathbb{Z}} x[k]h[l] \delta[n-k-l] \\
+                 & = \sum_{k \in \mathbb{Z}} x[k]h[n - k]
+    \end{align*}
+    So if you think about it, the only term that survives is the term where $l = n - k$, due to the delta function. \\
+    Think of this as being on the k-x plane, where $x[k]$ is the height of the function at $k$, and $h[l]$ is the height of the function at $l$. The convolution is the sum of the areas of the rectangles formed by the product of the heights of the functions at $k$ and $l$. \\
+    This is very similar to polynomial multiplication, where the coefficients of the polynomials are the heights of the functions at $k$ and $l$!
+\end{proof}
+
+\begin{example}
+    [Computing convolution]
+    \begin{equation*}
+        (x * h) [n] = \sum_{k \in \mathbb{Z}} x[m]h[n-k]
+    \end{equation*}
+\end{example}
+
+% You need to default text size in inkscape.
+
+\begin{theorem}
+    [Convolution is Commutative] \label{thm:convolution-is-commutative}
+    Given $x \in \mathbb{C}^{\mathbb{Z}}, h \in \mathbb{C}^{\mathbb{Z}}$, the convolution of $x$ and $h$ is the same as the convolution of $h$ and $x$.
+    $$ \forall x, h \in \mathbb{C}^{\mathbb{Z}}, x * h = h * x $$
+\end{theorem}
+
+\begin{proof}
+    \begin{align*}
+        (x * h)[n] & = \sum_{k \in \mathbb{Z}}\sum_{l \in \mathbb{Z}} x[k]h[l] \delta[n-k-l] \\
+                   & = \sum_{l \in \mathbb{Z}}h[l]\sum_{k \in \mathbb{Z}} x[k] \delta[n-l-k] \\
+    \end{align*}
+    Intuitively: Convolutions can be thought of as filters. So using to filters in different orders shouldn't change the final result.
+\end{proof}
+
+\begin{theorem}
+    [Convolution is Associative] \label{thm:convolution-is-associative}
+    Given $x, h, g \in \mathbb{C}^{\mathbb{Z}}$, the convolution of $x$ and $h$ and then $g$ is the same as the convolution of $x$ and the convolution of $h$ and $g$.
+    $$ \forall x, h, g \in \mathbb{C}^{\mathbb{Z}}, x * (h * g) = (x * h) * g $$
+\end{theorem}
+
+\begin{theorem}
+    [Convolution Distributes over Addition] \label{thm:convolution-is-distributive}
+    Given $x, h, g \in \mathbb{C}^{\mathbb{Z}}$, the convolution of $x$ and the sum of $h$ and $g$ is the same as the sum of the convolutions of $x$ and $h$ and $x$ and $g$.
+    $$ \forall x, h, g \in \mathbb{C}^{\mathbb{Z}}, x * (h + g) = x * h + x * g $$
+
+\end{theorem}
+
+\begin{proof}
+    \begin{align*}
+        (x * (h + g))[n] & = \sum_{k \in \mathbb{Z}} x[k](h + g)[n-k]                                \\
+                         & = \sum_{k \in \mathbb{Z}} x[k]h[n-k] + \sum_{k \in \mathbb{Z}} x[k]g[n-k] \\
+                         & = (x * h)[n] + (x * g)[n]
+    \end{align*}
+\end{proof}
+
+\begin{corollary}
+    If $x[n] * h[n] = y[n]$ then for all integers $n_0, n_1$ all scalars $A \in \mathbb{C}$, we have
+    \begin{enumerate}
+        \item $x[n - n_0] * h[n] = y[n - n_0]$
+        \item $x[n] * h[n -n_1] = y[n - n_1]$
+        \item $x[n-n_0] * h[n-n_1] = y[n-n_0-n_1]$
+        \item $(A x[n])* h[n] = A y[n]$
+    \end{enumerate}
+\end{corollary}
+
+\begin{corollary}
+    $\delta$ is the convolutional identity:
+    $$ \forall x, x * \delta = \delta * x = x$$
+    Also:
+    \begin{itemize}
+        \item $\delta [n] * \delta[n] = \delta [n]$
+        \item $\delta [n-n_0] * \delta [n] = \delta [n-n_0]$
+        \item $\delta [n-n_0] * \delta[n-n_0] = \delta [n - n_0 - n_1]$
+    \end{itemize}
+\end{corollary}
+
